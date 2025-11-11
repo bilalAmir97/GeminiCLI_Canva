@@ -1,0 +1,91 @@
+You are a senior front-end engineer with expertise in pixel-perfect UI implementation. Analyze the attached reference image (canva_ss.jpg) and recreate the exact hero section using pure HTML5 and CSS with zero JavaScript and no external dependencies.
+
+## Visual Analysis & Requirements
+
+### Background
+- Implement a full-viewport vertical gradient with smooth color transitions:
+  * Top: Vivid purple (#7b3ff6 or similar)
+  * Middle: Deep blue (#3f6ef5 or similar)
+  * Bottom: Bright teal/cyan (#12d3c8 or similar)
+- Gradient must be smooth with no banding; use linear-gradient with multiple color stops for precision
+
+### Navigation Bar (Sticky Header)
+- Three-column grid layout with precise alignment:
+  * Left: "Canva" logo text (white, bold, ~22px)
+  * Center: Horizontal nav links (Design, Product, Plans, Business, Education, Help) with equal spacing
+  * Right: Two pill-shaped buttons:
+    - "Sign up": Filled purple background (#6d4df7), white text, subtle shadow
+    - "Log in": White/light background, dark text, minimal border
+- All nav links: white text with 95% opacity, medium font weight
+- Height: 72px with proper vertical centering
+- Sticky positioning at top
+
+### Hero Content (Centered)
+- Large display heading with two-line stacked layout:
+  * Line 1: "A new era" (font-size: clamp(42px, 8vw, 96px))
+  * Line 2: "of imagination" (font-size: clamp(56px, 11vw, 128px))
+  * Both lines: white color, extra bold weight (750-800), tight line-height (0.95), slight negative letter-spacing
+- Subheading (below heading):
+  * Exact text: "Discover a whole new world of skills and tools designed to put your imagination to work."
+  * Font-size: clamp(16px, 2.4vw, 22px), white with 95% opacity
+  * Max-width: 900px, centered
+- CTA button row (horizontal, centered):
+  * "Start designing for free": Light background (#f3f6ff), dark text, prominent shadow
+  * "Explore our launches": Medium-dark background (#294c73), white text
+  * Both buttons: pill shape (border-radius: 9999px), height 40px, smooth hover transitions
+
+## Implementation Standards
+
+### HTML Structure
+- Use semantic HTML5: `<header>`, `<nav>`, `<main>`, `<section>`
+- Include proper ARIA landmarks for accessibility
+- Nav list as `<ul>` with `<li>` items
+- All buttons as `<a>` tags with href="#" for demo purposes
+
+### CSS Architecture
+- Define CSS custom properties in :root for:
+  * Color palette (gradient stops, text, button colors)
+  * Spacing scale (--space-1 through --space-6)
+  * Typography (font sizes, weights, line heights)
+  * Border radius (--radius-pill: 9999px)
+- Use system font stack: `ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica Neue, Arial, sans-serif`
+- Implement fluid typography with clamp() for responsive scaling
+- Container: max-width 1200px with horizontal padding
+
+### Responsive Behavior
+- Desktop (>960px): Three-column nav grid as described
+- Tablet/Mobile (<960px): Simplify nav to two columns (brand + auth buttons), hide center links
+- Maintain readability and touch targets on all screen sizes
+- No horizontal scroll at any viewport width
+
+### Accessibility
+- Include focus-visible outlines (3px white/transparent)
+- Ensure 4.5:1 contrast ratio for all text on gradient background
+- Keyboard navigation support (Tab order: nav links → buttons)
+- Semantic heading hierarchy (<h1> for hero display)
+
+### Performance
+- Zero external dependencies (no fonts, no frameworks)
+- Inline all CSS in styles.css (no @import)
+- Optimize gradient for GPU rendering
+- Total file size target: <50KB combined
+
+## Deliverables
+
+Generate exactly two files:
+
+1. **index.html**
+   - Complete HTML5 document with doctype, meta tags, and linked stylesheet
+   - Single hero section with nav and centered content
+   - Clean indentation and commented sections
+
+2. **styles.css**
+   - Organized CSS with section comments
+   - CSS custom properties at top
+   - Mobile-first media queries
+   - Hover/focus states for all interactive elements
+   - Inline comments for gradient values and breakpoints
+
+## Output Format
+
+Provide each file's complete code in separate code blocks with clear file names. Do not truncate or use placeholders—deliver production-ready code that can be saved and opened directly in a browser.

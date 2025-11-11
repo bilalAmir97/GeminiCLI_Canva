@@ -1,0 +1,363 @@
+/* =============================================
+   CSS Custom Properties
+   ============================================= */
+:root {
+    /* Colors */
+    --color-purple: #9b4bfd; /* Updated to user-specified color */
+    --color-deep-blue: rgba(
+        41,
+        76,
+        115,
+        0.8
+    ); /* Increased opacity for "Explore our launches" button */
+    --color-teal: #00c4cc;
+    --color-white: #ffffff;
+    --color-light-surface: #f3f6ff;
+    --color-dark-text: #0d0c22;
+
+    /* Gradient */
+    --gradient-start: #942bfe; /* Updated to user-specified color */
+    --gradient-mid: #503ff1; /* Updated to user-specified color */
+    --gradient-end: #12d3c8;
+
+    /* Typography */
+    --font-family-sans:
+        ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
+        "Helvetica Neue", Arial, sans-serif;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    /* Spacing */
+    --space-1: 0.25rem; /* 4px */
+    --space-2: 0.5rem; /* 8px */
+    --space-3: 1rem; /* 16px */
+    --space-4: 1.5rem; /* 24px */
+    --space-5: 2.5rem; /* 40px */
+    --space-6: 4rem; /* 64px */
+
+    /* Borders */
+    --radius-pill: 9999px;
+    --radius-small: 8px; /* New smaller radius for hero buttons */
+}
+
+/* =============================================
+   Base & Reset Styles
+   ============================================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    color: var(--color-white);
+    background-image: linear-gradient(
+        180deg,
+        var(--gradient-start) 0%,
+        var(--gradient-mid) 50%,
+        var(--gradient-end) 100%
+    );
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1,
+p {
+    text-align: center;
+}
+
+/* =============================================
+   Header & Navigation
+   ============================================= */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    /* background-color: rgba(0, 0, 0, 0.1); Removed for transparency */
+    backdrop-filter: blur(8px);
+}
+
+.main-nav {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    height: 72px;
+}
+
+.logo {
+    font-family: "Segoe Script", "Lucida Handwriting", cursive;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--color-white);
+}
+
+.nav-links {
+    display: none; /* Hidden on mobile by default */
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.nav-links a {
+    opacity: 0.95;
+    font-weight: var(--font-weight-medium);
+    transition: opacity 0.2s ease;
+    position: relative; /* For the underline effect */
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--color-white);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: flex-end;
+}
+
+.btn {
+    display: inline-block;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-pill);
+    font-weight: var(--font-weight-medium); /* Changed to match navbar items */
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease; /* Added filter transition */
+    height: 40px;
+    line-height: 1; /* Adjusted for vertical centering */
+    border: 1px solid transparent;
+    display: flex; /* Use flexbox for vertical centering */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1); /* Add brightness on hover */
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--color-white);
+    outline-offset: 2px;
+}
+
+.btn-signup {
+    background-color: var(--color-purple);
+    color: var(--color-white);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* More subtle shadow */
+    border-radius: var(--radius-small);
+}
+
+.btn-login {
+    background-color: var(--color-white);
+    color: var(--color-dark-text);
+    border-color: rgba(0, 0, 0, 0.1); /* Very light border */
+    border-radius: var(--radius-small);
+}
+
+/* =============================================
+   Hero Section
+   ============================================= */
+.hero {
+    padding: var(--space-6) var(--space-4);
+    position: relative; /* For positioning the icons */
+    overflow: hidden; /* To contain the icons */
+    min-height: calc(100vh - 72px); /* Adjust for header height */
+    display: flex; /* Use flexbox to center content vertically */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative; /* Ensure content is above icons */
+    z-index: 2;
+}
+
+.hero-icons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.hero-icons svg {
+    position: absolute;
+    opacity: 0.8;
+    animation: float 6s ease-in-out infinite;
+}
+
+.icon-grad-cap {
+    bottom: 10px;
+    right: 15%;
+    transform: rotate(15deg);
+    animation-delay: 1s;
+    animation-duration: 7s;
+}
+
+.icon-t {
+    bottom: 20px;
+    left: 25%;
+    transform: rotate(-10deg);
+    animation-delay: 0.5s;
+}
+
+.icon-a {
+    bottom: 50px;
+    left: 10%;
+    transform: rotate(10deg);
+    animation-duration: 8s;
+}
+
+.icon-shape1 {
+    bottom: 60px;
+    right: 30%;
+    transform: rotate(-25deg);
+    animation-delay: 2s;
+    animation-duration: 5s;
+}
+
+.icon-shape2 {
+    bottom: 30px;
+    right: 5%;
+    transform: rotate(20deg);
+    animation-delay: 1.5s;
+}
+
+.animated-heading {
+    font-weight: var(--font-weight-medium); /* Changed to sleek, non-bold style */
+    line-height: 0.95; /* Reverted to original line-height */
+    letter-spacing: -0.02em;
+    display: flex; /* Changed back to flex for column layout */
+    flex-direction: column;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content .line1 {
+    font-size: clamp(42px, 8vw, 96px);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content .line2 {
+    font-size: clamp(56px, 11vw, 128px);
+    padding-bottom: 0.1em; /* Added to prevent clipping of 'g' */
+    animation: fadeInUp 1s ease-out 0.2s; /* Added delay */
+    animation-fill-mode: both; /* Keep the final state of the animation */
+}
+
+.subheading {
+    font-size: clamp(16px, 2.4vw, 22px);
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 600px; /* Adjusted for text wrapping */
+    animation: fadeInUp 1s ease-out 0.4s; /* Added animation with delay */
+    animation-fill-mode: both;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+    animation: fadeInUp 1s ease-out 0.6s; /* Added animation with delay */
+    animation-fill-mode: both;
+}
+
+.btn-primary,
+.btn-secondary {
+    border-radius: var(--radius-small); /* Reduced border-radius */
+    padding: var(--space-3) var(--space-3); /* Increased top/bottom padding */
+    height: 56px; /* Adjusted height */
+}
+
+.btn-primary {
+    background-color: var(--color-light-surface);
+    color: var(--color-dark-text);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* More prominent shadow */
+}
+
+.btn-secondary {
+    background-color: var(--color-deep-blue);
+    color: var(--color-white);
+}
+
+/* =============================================
+   Responsive Breakpoints
+   ============================================= */
+
+/* Tablet and Desktop */
+@media (min-width: 960px) {
+    .main-nav {
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .nav-links {
+        display: flex;
+    }
+}
